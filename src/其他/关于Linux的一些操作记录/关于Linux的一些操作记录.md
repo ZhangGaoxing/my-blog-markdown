@@ -134,3 +134,10 @@
     ```
     sudo streamer -c /dev/video0 -b 32 -o image.jpg
     ```
+
+## OPi Zero WiFi 在 Debian 中无法使用
+在 `/etc/NetworkManager/NetworkManager.conf` 中添加
+```
+[device]
+wifi.scan-rand-mac-address=no
+```
