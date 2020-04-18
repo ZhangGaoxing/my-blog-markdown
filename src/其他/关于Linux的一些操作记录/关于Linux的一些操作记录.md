@@ -114,6 +114,7 @@
     ```
 
 ## 启用 USB Camera
+
 1. 安装 Video for Linux
     ```
     sudo apt-get install v4l-utils
@@ -126,7 +127,6 @@
     sudo apt-get install xawtv
     sudo apt-get install streamer
     ```
-
 3. 保存图像
     ```
     sudo fswebcam --save /home/$USER/image.jpg -d /dev/video0 -r 640x480
@@ -136,8 +136,34 @@
     ```
 
 ## OPi Zero WiFi 在 Debian 中无法使用
+
 在 `/etc/NetworkManager/NetworkManager.conf` 中添加
 ```
 [device]
 wifi.scan-rand-mac-address=no
 ```
+
+## WSL2 中配置 Docker 自启
+
+1. 配置 `sudo` 权限
+    ```
+    sudo visudo
+    ```
+    替换 `username` 后添加
+    ```
+    username ALL=(ALL:ALL) NOPASSWD: /usr/sbin/service
+    ```
+2. 编辑 `bash.rc`
+    ```
+    sudo nano ~/.bashrc
+    ```
+    添加
+    ```
+    service docker status > /dev/null || sudo service docker start
+    ```
+3. 配置 Windows 自启
+    在启动文件夹（shell:startup）下添加 `vbs` 脚本
+    ```
+    Set ws = CreateObject("Wscript.Shell")
+    ws.run "ubuntu", vbhide
+    ```
