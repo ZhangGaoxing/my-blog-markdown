@@ -167,3 +167,9 @@ wifi.scan-rand-mac-address=no
     Set ws = CreateObject("Wscript.Shell")
     ws.run "ubuntu", vbhide
     ```
+    
+## PostgreSQL 设置 search_path
+    ```
+    SHOW search_path;
+    ALTER DATABASE <database_name> SET search_path TO schema1,schema2;
+    ```
