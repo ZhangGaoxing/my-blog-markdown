@@ -182,3 +182,30 @@ git config --global https.proxy socks5://127.0.0.1:1080
 git config --global --unset http.proxy
 git config --global --unset https.proxy
 ```
+
+## wiringOP
+```
+git clone https://github.com/orangepi-xunlong/wiringOP.git
+cd wiringOP
+./build clean
+./build
+gcc -Wall -pthread -o wop wop.c -lwiringPi -lcrypt -lm -lrt
+```
+
+```c
+#include <wiringPi.h>
+
+int main (void) {
+  int pin = 2;
+  
+  wiringPiSetup();
+  pinMode(pin, OUTPUT);
+
+  while(1) {
+    digitalWrite (pin, HIGH);
+    digitalWrite (pin, LOW);
+  }
+
+  return 0;
+}
+```
