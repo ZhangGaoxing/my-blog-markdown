@@ -209,3 +209,22 @@ int main (void) {
   return 0;
 }
 ```
+
+## Linux 配置 Shadowsocks 代理
+```
+{
+    "server":"",
+    "server_port":10800,
+    "local_address":"0.0.0.0",
+    "local_port":3000,
+    "password":"",
+    "timeout":60,
+    "method":"chacha20-ietf-poly1305",
+    "plugin":"obfs-local",
+    "plugin_opts":"obfs=http;obfs-host=www.baidu.com"
+}
+```
+```
+sudo nohup ss-local -c /etc/shadowsocks-libev/config.json &
+export ALL_PROXY=socks5://127.0.0.1:23474
+```
