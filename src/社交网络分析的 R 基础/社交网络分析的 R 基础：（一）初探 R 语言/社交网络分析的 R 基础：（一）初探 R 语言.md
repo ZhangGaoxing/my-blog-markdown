@@ -76,8 +76,8 @@ R 安装完成后会附带一个 RGui ，相对来说比较简陋，用户通常
 
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #e0f2ff;color: #002b4d;margin: 10px">
     <p style="margin-top:0;font-weight: bold"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;练习</p>
-    <p><span>1. 试着安装一下网络分析包“igraph”；</span></p>
-    <p><span>2. 随便在 R 终端中写点啥，试试"a"+"b"会输出“ab”吗。</span></p>
+    <p><span>1. 试着安装一下网络分析包 “igraph”；</span></p>
+    <p><span>2. 随便在 R 终端中写点啥，试试 <code>"a"+"b"</code> 会输出 <code>ab</code> 吗。</span></p>
 </div>
 
 ## 参考
