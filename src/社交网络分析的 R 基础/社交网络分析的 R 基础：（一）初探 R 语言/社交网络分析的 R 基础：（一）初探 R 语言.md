@@ -72,6 +72,20 @@ R 安装完成后会附带一个 RGui ，相对来说比较简陋，用户通常
    
    ![](7.png)
 
+### R 的调试
+
+调试是发现程序错误和保证程序正确运行的一个必要环节。在 Visual Studio Code 对 R 进行调试还需要安装一个扩展 `R Debugger` 。
+
+![](8.png)
+
+扩展安装完成后打开侧边栏中的“运行与调试”，并在程序想要中断的位置打上断点（行号左侧）。
+
+![](9.png)
+
+点击“运行和调试”即可开始调试，左侧会展示相关变量的值。
+
+![](10.png)
+
 到这里即可愉快的开启 R 语言之旅了。
 
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #e0f2ff;color: #002b4d;margin: 10px">
@@ -79,6 +93,8 @@ R 安装完成后会附带一个 RGui ，相对来说比较简陋，用户通常
     <p><span>1. 试着安装一下网络分析包 “igraph”；</span></p>
     <p><span>2. 随便在 R 终端中写点啥，试试 <code>"a"+"b"</code> 会输出 <code>ab</code> 吗。</span></p>
 </div>
+
+
 
 ## 参考
 
