@@ -247,3 +247,9 @@ service docker start
 ```
 wsl -d Ubuntu -u root /etc/init-wsl
 ```
+
+## SQL Server Docker
+```
+docker pull mcr.microsoft.com/mssql/server
+docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=@Passw0rd' -e --restart=always --name mssql -p 14330:1433 -v mssql_data:/var/opt/mssql -d mcr.microsoft.com/mssql/server
+```
