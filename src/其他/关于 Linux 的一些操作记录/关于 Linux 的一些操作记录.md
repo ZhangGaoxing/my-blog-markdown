@@ -228,3 +228,22 @@ int main (void) {
 sudo nohup ss-local -c /etc/shadowsocks-libev/config.json &
 export ALL_PROXY=socks5://127.0.0.1:23474
 ```
+
+## potainer.io 安装
+```
+docker volume create potainer_data
+docker run -d -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v potainer_data:/data portainer/portainer-ce
+```
+
+## WSL 自启
+```
+sudo nano /etc/init-wsl
+```
+```
+#!/bin/sh
+echo initializing services
+service docker start
+```
+```
+wsl -d Ubuntu -u root /etc/init-wsl
+```
