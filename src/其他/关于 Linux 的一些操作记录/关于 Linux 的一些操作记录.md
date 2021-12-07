@@ -232,7 +232,7 @@ export ALL_PROXY=socks5://127.0.0.1:23474
 ## potainer.io 安装
 ```
 docker volume create potainer_data
-docker run -d -p 9000:9000 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v potainer_data:/data portainer/portainer-ce
+docker run -d --name portainer -p 9000:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v potainer_data:/data portainer/portainer-ce
 ```
 
 ## WSL 自启
@@ -251,5 +251,13 @@ wsl -d Ubuntu -u root /etc/init-wsl
 ## SQL Server Docker
 ```
 docker pull mcr.microsoft.com/mssql/server
-docker run -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=@Passw0rd' -e --restart=always --name mssql -p 14330:1433 -v mssql_data:/var/opt/mssql -d mcr.microsoft.com/mssql/server
+docker volume create mssql_data
+docker run -d --name mssql -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=@Passw0rd' -e --restart=always  -p 14330:1433 -v mssql_data:/var/opt/mssql mcr.microsoft.com/mssql/server
+```
+
+## PostgreSQL Docker
+```
+docker pull postgres
+docker volume create pgsql_data
+docker run -d --name pgsql -p 54321:5432 --restart=always -e TZ='Asia/Shanghai' -e POSTGRES_PASSWORD='@Passw0rd' -e ALLOW_IP_RANGE=0.0.0.0/0 -v pgsql_data:/var/lib/postgresql postgres
 ```
