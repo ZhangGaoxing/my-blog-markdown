@@ -252,12 +252,19 @@ wsl -d Ubuntu -u root /etc/init-wsl
 ```
 docker pull mcr.microsoft.com/mssql/server
 docker volume create mssql_data
-docker run -d --name mssql -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=@Passw0rd' -e --restart=always  -p 14330:1433 -v mssql_data:/var/opt/mssql mcr.microsoft.com/mssql/server
+docker run -d --name mssql -p 14330:1433 --restart=always -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=@Passw0rd' -e -v mssql_data:/var/opt/mssql mcr.microsoft.com/mssql/server
 ```
 
 ## PostgreSQL Docker
 ```
 docker pull postgres
 docker volume create pgsql_data
-docker run -d --name pgsql -p 54321:5432 --restart=always -e TZ='Asia/Shanghai' -e POSTGRES_PASSWORD='@Passw0rd' -e ALLOW_IP_RANGE=0.0.0.0/0 -v pgsql_data:/var/lib/postgresql postgres
+docker run -d --name pgsql -p 54321:5432 --restart=always -e POSTGRES_PASSWORD='@Passw0rd' -e TZ='Asia/Shanghai' -e ALLOW_IP_RANGE=0.0.0.0/0 -v pgsql_data:/var/lib/postgresql postgres
+```
+
+## MySQL Docker
+```
+docker pull myysql
+docker volume create mysql_data
+docker run -d --name mysql -p 33060:3306 -e MYSQL_ROOT_PASSWORD=@Passw0rd -e TZ=Asia/Shanghai --restart=always -v mysql_data:/var/lib/mysql mysql
 ```
