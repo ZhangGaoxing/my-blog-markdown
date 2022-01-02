@@ -1,5 +1,14 @@
 <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
+* [R 简介]()
+* [R 与 Python]()
+* [安装 R]()
+  * [CRAN]()
+  * [Windows 设置环境变量]()
+  * [在 Visual Studio Code 中进行 R 编程]()
+  * [R 的调试]()
+* [参考]()
+
 ## R 简介
 
 作为一个 R 语言的初学者，没有人会关心 R 的发展历史，因为学习一门语言的最终目的还是为了将其作为一种工具进行使用。你问我知道吗，我当然也不知道😂。为了让本文的内容更加的充实，我从维基百科摘录了一些内容[<sup>[1]</sup>](#1)[<sup>[2]</sup>](#2)。
@@ -18,7 +27,7 @@
 
 其次要考虑学习成本。Python 作为一个万金油，加上一个“容易学习”名头，足以吸引大部分人的目光。但是我认为初学 Python 上手很慢，Python 丰富的语法糖特性很容易造成初学者理解困难。R 作为一个面向对象的语言，但由于其存在不同实现面向对象的类型（S3、S4……），某种程度上来说 R 的面向对象不强。对初学者来说，面向对象通常很难理解，而 R 语言常用的功能大部分是以函数提供的，很容易实现面向过程的编程，这样就能专注于解决问题本身，而不是去弄明白程序为什么要这么写。
 
-最终不管是选择 R 还是 Python ，解决问题是关键，语言只不过是过程中的一个工具。
+最终不管是选择 R 还是 Python ，解决问题是关键，语言只不过是过程中的一个工具。如果你有 Python 基础，好好学习 NetworkX 包就能达到目的；如果你其他语言基础较弱，也不清楚什么是面向对象，那么 R 语言可能是更好的选择。
 
 ## 安装 R
 
@@ -91,10 +100,8 @@ R 安装完成后会附带一个 RGui ，相对来说比较简陋，用户通常
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #e0f2ff;color: #002b4d;margin: 10px">
     <p style="margin-top:0;font-weight: bold"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;练习</p>
     <p><span>1. 试着安装一下网络分析包 “igraph”；</span></p>
-    <p><span>2. 随便在 R 终端中写点啥，试试 <code>"a"+"b"</code> 会输出 <code>ab</code> 吗。</span></p>
+    <p><span>2. 随便在 R 终端中写点代码，试试 <code>"a"+"b"</code> 会输出 <code>ab</code> 吗。</span></p>
 </div>
-
-
 
 ## 参考
 
