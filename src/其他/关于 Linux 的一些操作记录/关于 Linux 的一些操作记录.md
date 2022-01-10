@@ -235,6 +235,14 @@ docker volume create potainer_data
 docker run -d --name portainer -p 9000:9000 --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v potainer_data:/data portainer/portainer-ce
 ```
 
+## potainer.io 添加远程节点（配置 Docker 远程访问）
+```
+sudo nano /usr/lib/systemd/system/docker.service
+找到 ExecStart 字段，添加 -H tcp://0.0.0.0:2375 -H unix://var/run/docker.sock
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
 ## WSL 自启
 ```
 sudo nano /etc/init-wsl
