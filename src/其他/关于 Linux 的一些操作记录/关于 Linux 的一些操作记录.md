@@ -270,6 +270,13 @@ docker volume create pgsql_data
 docker run -d --name pgsql -p 54321:5432 --restart=always -e POSTGRES_PASSWORD='@Passw0rd' -e TZ='Asia/Shanghai' -e ALLOW_IP_RANGE=0.0.0.0/0 -v pgsql_data:/var/lib/postgresql postgres
 ```
 
+## TimescaleDB Docker
+```
+docker pull timescale/timescaledb:latest-pg14
+docker volume create tsdb_data
+docker run -d --name timescaledb -p 54321:5432 --restart=always -e POSTGRES_PASSWORD='@Passw0rd' -e TZ='Asia/Shanghai' -e ALLOW_IP_RANGE=0.0.0.0/0 -v tsdb_data:/var/lib/postgresql timescale/timescaledb:latest-pg14
+```
+
 ## MySQL Docker
 ```
 docker pull myysql
