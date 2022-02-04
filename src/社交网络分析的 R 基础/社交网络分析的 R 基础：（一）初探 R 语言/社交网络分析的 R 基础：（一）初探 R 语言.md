@@ -1,5 +1,3 @@
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
 * [R 简介]()
 * [R 与 Python]()
 * [安装 R]()
@@ -7,7 +5,6 @@
   * [Windows 设置环境变量]()
   * [在 Visual Studio Code 中进行 R 编程]()
   * [R 的调试]()
-* [参考]()
 
 ## R 简介
 
@@ -38,7 +35,7 @@
 ![](2.png)
 
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #d2f9d2;color: #094409;margin: 10px">
-    <p style="margin-top:0;font-weight: bold"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;&nbsp;提示</p>
+    <p style="margin-top:0;font-weight: bold">💡&nbsp;提示</p>
     <p><span>Microsoft 也提供了 R 的发行版 Microsoft R Open，增强了计算性能。项目地址：https://mran.microsoft.com/open</span></p>
 </div>
 
@@ -98,7 +95,7 @@ R 安装完成后会附带一个 RGui ，相对来说比较简陋，用户通常
 到这里即可愉快的开启 R 语言之旅了。
 
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #e0f2ff;color: #002b4d;margin: 10px">
-    <p style="margin-top:0;font-weight: bold"><i class="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;练习</p>
+    <p style="margin-top:0;font-weight: bold">✏️&nbsp;练习</p>
     <p><span>1. 试着安装一下网络分析包 “igraph”；</span></p>
     <p><span>2. 随便在 R 终端中写点代码，试试 <code>"a"+"b"</code> 会输出 <code>ab</code> 吗。</span></p>
 </div>

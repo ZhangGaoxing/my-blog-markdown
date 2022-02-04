@@ -1,5 +1,3 @@
-<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
 在第二章介绍了 R 语言中的基本数据类型，本章会将其组装起来，构成特殊的数据结构，即向量、矩阵与列表。这些数据结构在社交网络分析中极其重要，本质上对图的分析，就是对邻接矩阵的分析，而矩阵又是由若干个向量构成，因此需要熟练掌握这些特殊的数据结构。
 
 * [向量]()
@@ -59,7 +57,7 @@ x <- c(x, 0)  # 向 x 中添加元素 0
 ```
 
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #d2f9d2;color: #094409;margin: 10px">
-    <p style="margin-top:0;font-weight: bold"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;&nbsp;提示</p>
+    <p style="margin-top:0;font-weight: bold">💡&nbsp;提示</p>
     <p><span>在 R 语言中任何使用索引的数据结构都可以使用元素访问的形式扩充。</span></p>
 </div>
 
@@ -333,7 +331,7 @@ SEXP eigenVectors(const Eigen::Map<Eigen::MatrixXd> A){
 ```
 
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #d2f9d2;color: #094409;margin: 10px">
-    <p style="margin-top:0;font-weight: bold"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;&nbsp;提示</p>
+    <p style="margin-top:0;font-weight: bold">💡&nbsp;提示</p>
     <p><span>要实现其他的矩阵计算操作可以查看 RcppEigen 的教程：https://cran.r-project.org/web/packages/RcppEigen/vignettes/RcppEigen-Introduction.pdf</span></p>
 </div>
 
@@ -377,7 +375,7 @@ $scores
 ```
 
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #d2f9d2;color: #094409;margin: 10px">
-    <p style="margin-top:0;font-weight: bold"><i class="fa fa-lightbulb-o" aria-hidden="true"></i>&nbsp;&nbsp;提示</p>
+    <p style="margin-top:0;font-weight: bold">💡&nbsp;提示</p>
     <p><span><code>c()</code> 本质上并不是创建向量的函数，c 是 combine 的缩写，是一个合并函数。</span></p>
 </div>
 
@@ -399,6 +397,15 @@ $scores
 l <- list(c("a", "b", "c"), 12345)
 names(l) <- c("name1", "name2")
 ```
+
+<div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #e0f2ff;color: #002b4d;margin: 10px">
+    <p style="margin-top:0;font-weight: bold">✏️&nbsp;练习</p>
+    <p><span>1. 试着创建一个向量，看看向量能否包含不同类型的元素，比如 <code>c(1, "a")</code> 会创建一个什么向量；</p>
+    <p><span>2. 试着对矩阵进行运算，能否求出一个矩阵的最大元素；</span></p>
+    <p><span>3. 列表通过“<code>[索引]</code>”与“<code>[[索引]]</code>”有什么不同，输出看看；</span></p>
+    <p><span>4. <code>list(c("a", "b", "c"))</code> 该列表的长度是多少。</span></p>
+    <p><span>5. 试着对任意一个非空列表使用 <code>unlist()</code> 函数，看看会发生什么。</span></p>
+</div>
 
 ## 参考
 
