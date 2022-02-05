@@ -37,9 +37,9 @@
 ......
 ```
 
-在读取文件之前还需要对其进行一下修改，可以看到该文件的第一行“`% sym unweighted`”是由空格分隔的三个元素，R 语言还没有过于智能，在读取到第二行时会因为只有两个元素而报错，因此需要将第一行删除。下面使用 `read.table()` 将文件读入到 R 程序中：
+在读取文件之前还需要对其进行一下修改，可以看到该文件的第一行“`% sym unweighted`”是由空格分隔的三个元素，R 语言还没有太过智能，在读取到第二行时会因为只有两个元素而报错，因此需要将第一行删除。下面使用 `read.table()` 将文件读入到 R 程序中：
 ```R
-graph_edges <- read.table(file = "out.dolphins", header = FALSE)
+graph.edges <- read.table(file = "out.dolphins", header = FALSE)
 ```
 
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #d2f9d2;color: #094409;margin: 10px">
@@ -47,16 +47,16 @@ graph_edges <- read.table(file = "out.dolphins", header = FALSE)
     <p><span>也可以将 out 文件中的制表符（\t）替换成逗号（,），将文件更改为使用逗号分隔的 CSV 文件，并使用 <code>read.csv()</code> 函数读取。</span></p>
 </div>
 
-你也许会好奇读入的 `graph_edges` 到底是什么东西，使用 `class()` 函数来看看变量的类型：
+你也许会好奇读入的 `graph.edges` 到底是什么东西，使用 `class()` 函数来看看变量的类型：
 ```R
-> class(graph_edges)
+> class(graph.edges)
 [1] "data.frame"
 ```
 
 `data.frame` 似乎前面的章节并没有介绍，受限于研究的方向，这有可能是你唯一一次接触数据框类型，不用管它，下面将读入的数据转换为图：
 ```R
 > library(igraph)
-> graph <- graph_from_data_frame(graph_edges, directed = FALSE)
+> graph <- graph_from_data_frame(graph.edges, directed = FALSE)
 ```
 
 下面画图看看导入的 Dolphins 网络：

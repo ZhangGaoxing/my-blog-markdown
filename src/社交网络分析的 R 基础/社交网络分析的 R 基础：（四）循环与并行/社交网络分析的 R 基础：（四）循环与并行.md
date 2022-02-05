@@ -81,7 +81,7 @@ R 语言中循环语句的执行效率是无法忍受的，这是因为循环语
 func1 <- function(matrix) {
     row_sum <- c()
     for (i in 1: nrow(matrix)) {
-        row_sum[i] <- sum(matrix[i,])  # 对每一行求和
+        row_sum[i] <- sum(matrix[i, ])  # 对每一行求和
     }
 
     return(row_sum)
@@ -91,7 +91,7 @@ func1 <- function(matrix) {
 使用 `sapply()` 可以这样简化代码：
 ```R
 func2 <- function(matrix) {
-    return(sapply(1: nrow(matrix), function(i) { return(sum(matrix[i,])) }))
+    return(sapply(1: nrow(matrix), function(i) { return(sum(matrix[i, ])) }))
 }
 ```
 
@@ -155,8 +155,8 @@ sapply(X, FUN)
 在本机上处理并行计算的概念很好理解，就是将需要并行处理的任务分配到计算机的多个 CPU 内核中，这也是最常见的场景。继续以“对一个矩阵的行求和”为例，采用并行的方式解决这个问题。首先需要创建一个并行集群：
 ```R
 > library(parallel)
-> parallel_cores <- detectCores()  # 检测本机的内核数
-> cl <- makeCluster(parallel_cores)  # 创建集群，从机的数量为内核数
+> parallel.cores <- detectCores()  # 检测本机的内核数
+> cl <- makeCluster(parallel.cores)  # 创建集群，从机的数量为内核数
 ```
 
 <div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #d2f9d2;color: #094409;margin: 10px">
