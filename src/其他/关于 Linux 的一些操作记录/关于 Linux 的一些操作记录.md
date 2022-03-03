@@ -279,7 +279,15 @@ docker run -d --name timescaledb -p 54321:5432 --restart=always -e POSTGRES_PASS
 
 ## MySQL Docker
 ```
-docker pull myysql
+docker pull mysql
 docker volume create mysql_data
 docker run -d --name mysql -p 33060:3306 -e MYSQL_ROOT_PASSWORD=@Passw0rd -e TZ=Asia/Shanghai --restart=always -v mysql_data:/var/lib/mysql mysql
+```
+
+## Redis Docker
+```
+docker pull redis
+docker volume create redis_data
+# 下载配置文件 http://download.redis.io/redis-stable/redis.conf
+docker run -d --name redis -p 6379:6379 -v /home/$USER/redisconf:/usr/local/etc/redis -v redis_data:/data --restart=always redis redis-server /usr/local/etc/redis/redis.conf
 ```
