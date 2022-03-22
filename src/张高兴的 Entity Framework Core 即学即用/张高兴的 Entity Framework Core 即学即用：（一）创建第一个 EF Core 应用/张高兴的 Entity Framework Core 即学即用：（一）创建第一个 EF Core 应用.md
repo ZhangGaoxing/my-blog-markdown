@@ -198,11 +198,11 @@ Code First 和 Database First 算是 EF 中比较有特色的功能。简单来�
 接下来使用 Database First 的方式去生成实体类。`Scaffold-DbContext` 顾名思义译为“数据库上下文脚手架”，通过此命令生成实体类和数据库上下文。由于新版本的 .NET 已经不再集成 EF Core Tools 了，因此需要在项目中添加 NuGet 包 `Microsoft.EntityFrameworkCore.Tools`。下面切换到 `Pandemic.Models`，即提供实体类的项目中安装 NuGet 包 `Microsoft.EntityFrameworkCore.Tools`。安装完成后，打开 Visual Studio 中的 **工具 - NuGet 包管理器 - 程序包管理器控制台** 执行以下命令：
 
 1. 切换到项目 `Pandemic.Models`：
-   ```cmd
+   ```shell
    PM> cd .\Pandemic.Models
    ```
 2. 运行实体类生成命令 `Scaffold-DbContext`，该命令的详细参数请参考 https://docs.microsoft.com/zh-cn/ef/core/cli/powershell#scaffold-dbcontext ：
-   ```cmd
+   ```shell
    Scaffold-DbContext -Connection "Server=127.0.0.1;Port=54321;Database=pandemic;User Id=postgres;Password=@Passw0rd;" -Provider Npgsql.EntityFrameworkCore.PostgreSQL -Context PandemicContext
    ```
    ![](3.jpg)
