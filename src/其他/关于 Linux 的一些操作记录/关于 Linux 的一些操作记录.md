@@ -291,3 +291,18 @@ docker volume create redis_data
 # 下载配置文件 http://download.redis.io/redis-stable/redis.conf
 docker run -d --name redis -p 6379:6379 -v /home/$USER/redisconf:/usr/local/etc/redis -v redis_data:/data --restart=always redis redis-server /usr/local/etc/redis/redis.conf
 ```
+
+## GRUB 32 位引导 64 位系统
+1. 系统安装完成后进入 GRUB 临时引导
+```
+set root=(hd0,gpt2)
+linux /boot/vmlinuz* root=/dev/mmcblk1p2 quiet
+initrd /boot/initrd.img*
+boot
+```
+2. 进入系统后
+```
+apt install grub-efi-ia32-bin
+grub-install --target=i386-efi --efi-directory=/boot/efi --no-nvram --removable
+update-grub 或 grub-mkconfig -o /boot/grub/grub.cfg
+```
