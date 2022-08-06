@@ -256,6 +256,15 @@ service docker start
 wsl -d Ubuntu -u root /etc/init-wsl
 ```
 
+## WSL2 Ubuntu 22.04 Docker
+```
+The reason this errors occurs is because Ubuntu 22.04 LTS uses iptables-nft by default. You need to switch to iptables-legacy so that Docker will work again:
+
+Run sudo update-alternatives --config iptables
+Enter 1 to select iptables-legacy
+Now run sudo service docker start, and Docker will start as expected!
+```
+
 ## SQL Server Docker
 ```
 docker pull mcr.microsoft.com/mssql/server
