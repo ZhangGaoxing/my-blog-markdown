@@ -276,14 +276,14 @@ docker run -d --name mssql -p 14330:1433 --restart=always -e 'ACCEPT_EULA=Y' -e 
 ```
 docker pull postgres
 docker volume create pgsql_data
-docker run -d --name pgsql -p 54321:5432 --restart=always -e POSTGRES_PASSWORD='@Passw0rd' -e TZ='Asia/Shanghai' -e ALLOW_IP_RANGE=0.0.0.0/0 -v pgsql_data:/var/lib/postgresql postgres
+docker run -d --name pgsql -p 54321:5432 --restart=always -e POSTGRES_PASSWORD='@Passw0rd' -e TZ='Asia/Shanghai' -e ALLOW_IP_RANGE=0.0.0.0/0 -v pgsql_data:/var/lib/postgresql/data postgres
 ```
 
 ## TimescaleDB Docker
 ```
 docker pull timescale/timescaledb:latest-pg14
 docker volume create tsdb_data
-docker run -d --name timescaledb -p 54321:5432 --restart=always -e POSTGRES_PASSWORD='@Passw0rd' -e TZ='Asia/Shanghai' -e ALLOW_IP_RANGE=0.0.0.0/0 -v tsdb_data:/var/lib/postgresql timescale/timescaledb:latest-pg14
+docker run -d --name timescaledb -p 54321:5432 --restart=always -e POSTGRES_PASSWORD='@Passw0rd' -e TZ='Asia/Shanghai' -e ALLOW_IP_RANGE=0.0.0.0/0 -v tsdb_data:/var/lib/postgresql/data timescale/timescaledb:latest-pg14
 ```
 
 ## MySQL Docker
