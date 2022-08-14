@@ -293,6 +293,13 @@ docker volume create mysql_data
 docker run -d --name mysql -p 33060:3306 -e MYSQL_ROOT_PASSWORD=@Passw0rd -e TZ=Asia/Shanghai --restart=always -v mysql_data:/var/lib/mysql mysql
 ```
 
+## MongoDB Docker
+```
+docker pull mongo
+docker volume create mongo_data
+docker run -d --name mongodb -p 27017:27017 --restart=always -e MONGO_INITDB_ROOT_USERNAME=admin -e MONGO_INITDB_ROOT_PASSWORD=@Passw0rd -v mongo_data:/data/db mongo
+```
+
 ## Redis Docker
 ```
 docker pull redis
