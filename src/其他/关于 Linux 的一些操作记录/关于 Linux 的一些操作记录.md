@@ -318,7 +318,8 @@ boot
 ```
 2. 进入系统后
 ```
-apt install grub-efi-ia32-bin
-grub-install --target=i386-efi --efi-directory=/boot/efi --no-nvram --removable
-update-grub 或 grub-mkconfig -o /boot/grub/grub.cfg
+sudo apt purge grub-efi-amd64 grub-efi-amd64-bin grub-efi-amd64-signed
+sudo apt install grub-efi-ia32-bin grub-efi-ia32 grub-common grub2-common
+sudo grub-install --target=i386-efi /dev/mmcblk1p2 --efi-directory=/boot/efi/ --boot-directory=/boot/ --no-nvram --removable
+sudo update-grub 或 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
