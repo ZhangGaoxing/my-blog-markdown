@@ -65,10 +65,12 @@
     添加
     ```
     {
-        "registry-mirrors": [
-            "https://dockerhub.azk8s.cn",
-            "https://reg-mirror.qiniu.com"
-        ]
+      "registry-mirrors": [
+        "https://dockerproxy.com",
+        "https://hub-mirror.c.163.com",
+        "https://mirror.baidubce.com",
+        "https://ccr.ccs.tencentyun.com"
+      ]
     }
     ```
 4. 重启服务
