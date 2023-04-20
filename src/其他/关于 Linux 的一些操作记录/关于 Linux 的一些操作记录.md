@@ -325,3 +325,21 @@ sudo apt install grub-efi-ia32-bin grub-efi-ia32 grub-common grub2-common
 sudo grub-install --target=i386-efi /dev/mmcblk1p2 --efi-directory=/boot/efi/ --boot-directory=/boot/ --no-nvram --removable
 sudo update-grub 或 sudo grub-mkconfig -o /boot/grub/grub.cfg
 ```
+
+## NVIDIA Docker
+```
+# 卸载驱动
+sudo apt --purge remove nvidia*
+# 查询驱动
+sudo ubuntu-drivers devices
+# 安装驱动
+sudo apt install nvidia-driver-525-server
+# 安装 nvidia-container-toolkit
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+      && curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+      && curl -s -L https://nvidia.github.io/libnvidia-container/$distribution/libnvidia-container.list | \
+            sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+            sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list
+sudo apt update
+sudo apt install nvidia-container-toolkit
+```
