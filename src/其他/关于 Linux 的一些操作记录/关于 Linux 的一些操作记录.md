@@ -212,6 +212,34 @@ int main (void) {
 }
 ```
 
+## Shadowsocks 安装
+
+1. 安装
+    ```bash
+    sudo apt install -y shadowsocks-libev shadowsocks-v2ray-plugin
+    ```
+2. 配置
+    ```bash
+    sudo nano /etc/shadowsocks-libev/config.json
+    ```
+    ```json
+    {
+        "server":"0.0.0.0",
+        "mode":"tcp_and_udp",
+        "server_port":8388,
+        "local_port":1080,
+        "password":"Passw0rd",
+        "timeout":86400,
+        "method":"chacha20-ietf-poly1305",
+        "plugin":"ss-v2ray-plugin",
+        "plugin_opts":"server"
+    }
+    ```
+3. 重启服务
+    ```bash
+    sudo service shadowsocks-libev restart
+    ```
+
 ## Linux 配置 Shadowsocks 代理
 ```
 {
