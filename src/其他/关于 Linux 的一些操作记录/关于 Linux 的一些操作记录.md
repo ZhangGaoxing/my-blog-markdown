@@ -375,13 +375,16 @@ sudo apt install nvidia-container-toolkit
 ## WSL2 代理
 1. 在用户目录 `%USERPROFILE%` 下面创建一个配置文件 `.wslconfig`
 ```
-[experimental]
-autoMemoryReclaim=disabled  
+[wsl2]
 networkingMode=mirrored
+firewall=true
 dnsTunneling=true
-firewall=false
 autoProxy=true
+
+[experimental]
+autoMemoryReclaim=dropcache
 hostAddressLoopback=true
+useWindowsDnsCache=true
 ```
 2. Docker 配置文件 `/etc/docker/daemon.json` 新增
 ```
