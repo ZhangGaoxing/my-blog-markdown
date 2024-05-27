@@ -395,3 +395,13 @@ useWindowsDnsCache=true
 ```
 docker run --rm -it docker.io/appropriate/curl /bin/sh
 ```
+
+## WSL2 访问主机网络
+1. 防火墙设置
+```
+New-NetFirewallRule -DisplayName "WSL" -Direction Inbound  -InterfaceAlias "vEthernet (WSL (Hyper-V firewall))"  -Action Allow
+```
+2. 在 WSL 中获取主机 IP
+```
+ip route show | grep -i default | awk '{ print $3}'
+```
