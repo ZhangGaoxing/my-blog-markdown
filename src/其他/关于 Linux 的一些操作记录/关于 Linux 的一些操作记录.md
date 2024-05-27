@@ -387,3 +387,8 @@ hostAddressLoopback=true
 ```
 "iptables": false
 ```
+
+## Docker curl 镜像
+```
+docker run --rm -it docker.io/appropriate/curl /bin/sh
+```
