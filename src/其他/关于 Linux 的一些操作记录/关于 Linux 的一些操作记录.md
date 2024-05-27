@@ -371,3 +371,19 @@ distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
 sudo apt update
 sudo apt install nvidia-container-toolkit
 ```
+
+## WSL2 代理
+1. 在用户目录 `%USERPROFILE%` 下面创建一个配置文件 `.wslconfig`
+```
+[experimental]
+autoMemoryReclaim=disabled  
+networkingMode=mirrored
+dnsTunneling=true
+firewall=false
+autoProxy=true
+hostAddressLoopback=true
+```
+2. Docker 配置文件 `/etc/docker/daemon.json` 新增
+```
+"iptables": false
+```
