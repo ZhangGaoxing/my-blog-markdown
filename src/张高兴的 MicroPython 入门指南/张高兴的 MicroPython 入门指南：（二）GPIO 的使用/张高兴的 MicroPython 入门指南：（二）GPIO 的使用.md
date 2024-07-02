@@ -74,6 +74,8 @@ pin.irq(handler=irq_handler, trigger=machine.Pin.IRQ_FALLING)
 
 ## 使用微动开关点亮板载 LED
 
+给 Pico 接入一个外部开关，当按下开关时，板载的 LED 小灯点亮。
+
 ### 硬件需求
 
 | 名称 | 数量 |
@@ -83,37 +85,84 @@ pin.irq(handler=irq_handler, trigger=machine.Pin.IRQ_FALLING)
 
 ### 电路
 
+![](3.png)
+
+微动开关
+* 引脚 1 - GP2
+* 引脚 2 - GND
 
 ### 代码
 
+将 Pico 的 `GP2` 引脚配置成上拉输入模模式，将开关的一端与 `GP2` 连接。由于上拉输入在没有外部输入时读取始终为高电平信号，因此开关的另一段需要连接 `GND`。当按下开关时 `GP2` 引脚会检测到低电平信号。那么怎样去不断检测开关是否被按下？最简单的一种方式，可以使用 while 循环，在循环体内不停读取 `GP2` 的值，从而判断开关的状态。具体的代码如下。
+
 ```py
 from machine import Pin
 
-button = Pin(14, mode=Pin.IN, pull=Pin.PULL_UP)
+# 初始化引脚
+button = Pin(2, mode=Pin.IN, pull=Pin.PULL_UP)
 led = Pin('LED', mode=Pin.OUT)
 
+# 在循环体内不停读取，当检测到低电平信号时，表明开关被按下
 while True:
-    if not button.value():
-        led.value(1)
-    else:
-        led.value(0)
+  if not button.value():
+    led.value(1)
+  else:
+    led.value(0)
 ```
 
+这个程序虽然能够实现效果，但也有一个致命问题：不断的循环使得程序只能检测开关是否被按下，而做不了任何其他事情。使用中断可以将检测与 CPU 处理完全分离，无需不断扫描引脚的值。当硬件检测到信号更改时，中断都会在信号变化后触发功能执行。具体的代码如下。
+
 ```py
 from machine import Pin
 
-button = Pin(14, mode=Pin.IN, pull=Pin.PULL_UP)
+# 初始化引脚
+button = Pin(2, mode=Pin.IN, pull=Pin.PULL_UP)
 led = Pin('LED', mode=Pin.OUT)
 
+# 定义一个中断服务方法，当检测到低电平信号时，改变 LED 的状态
 def button_isr(pin):
   led.value(not led.value())
 
-button.irq(trigger=Pin.IRQ_FALLING,handler=button_isr)
+# 配置中断，下降沿触发
+button.irq(trigger=Pin.IRQ_FALLING, handler=button_isr)
 
 while True:
-  pass
+  pass  # 可以做一些其他事情
+```
+
+在运行上面的代码时，你可能已经注意到，按下按钮后 LED 存在闪烁的现象，这是为什么？是代码的错误吗？这是因为按钮并不是一个完美的开关，由于机械触点的弹性作用，一个按键开关在闭合时不会马上稳定地接通，在断开时也不会一下子断开，因而在闭合及断开的瞬间均伴随有一连串的“抖动”。信号从稳定状态移动，经过不稳定的过渡状态，最终到达新的稳定状态，如下图所示。
+
+![](4.png)
+
+针对这种抖动现象，可以通过硬件进行去除，比如利用电容的充放电平滑的补偿信号的抖动。也可以利用软件进行去抖，信号抖动的状态有时间限制，添加一个短暂的延时再去检测电平信号。
+
+```py
+from machine import Pin
+import utime
+
+last_time = 0 # 记录按下的时间
+
+# 初始化引脚
+button = Pin(2, mode=Pin.IN, pull=Pin.PULL_UP)
+led = Pin('LED', mode=Pin.OUT)
+
+# 定义一个中断服务方法，当检测到低电平信号时，改变 LED 的状态
+def button_isr(pin):
+  global last_time
+  new_time = utime.ticks_ms()
+  # 延时
+  if (new_time - last_time) > 50: 
+    led.value(not led.value())
+    last_time = new_time
+
+# 配置中断，下降沿触发
+button.irq(trigger=Pin.IRQ_FALLING, handler=button_isr)
+
+while True:
+  pass  # 可以做一些其他事情
 ```
 
 ## 参考
 
 1. MicroPython documentation：<https://docs.micropython.org/en/latest/library/machine.Pin.html>
+2. MicroPython for Kids：<https://www.coderdojotc.org/micropython/advanced-labs/02-interrupt-handlers>
