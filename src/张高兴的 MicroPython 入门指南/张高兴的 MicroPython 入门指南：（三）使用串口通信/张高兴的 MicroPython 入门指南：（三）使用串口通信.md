@@ -65,13 +65,18 @@ while uart0.any() > 0:
     print(uart0.readline())
 ```
 
+<div style="display: block;position: relative;border-radius: 8px;padding: 1rem;background-color: #d2f9d2;color: #094409;margin: 10px">
+    <p style="margin-top:0;font-weight: bold">💡&nbsp;提示</p>
+    <p><span>在部分开发板上可以像 GPIO 中断一样，使用串口中断 <code>irq(trigger, priority=1, handler=None, wake=machine.IDLE)</code></span></p>
+</div>
+
 使用 `deinit()` 方法可关闭串口。
 
 ```py
 uart0.deinit()
 ```
 
-## 板载串口相互通信
+## 使用板载串口相互通信
 
 Pico 上有两组串口 `UART0` 与 `UART1`，因此可以使用这两组串口相互通信。
 
@@ -107,6 +112,35 @@ while uart0.any() > 0:
     rxData += uart0.read(1)
 # 解码并打印
 print(rxData.decode('utf-8'))
+```
+
+## 使用板载的 USB 串口
+
+当 Pico 连接到计算机上时，在设备管理器中会新增一个通信端口 `COMx`，MicroPython 的 REPL 终端就是运行在这个串口之上。那么能使用这个板载 USB 串口传输数据吗？答案是可以的，但与正常串口通信的代码不同，需要使用 `select`，一个用于异步 I/O 多路复用的模块。将下面的代码烧录到 Pico 中，使用 `PuTTY` 等串口工具连接 Pico，当 Pico 检测到输入 `1` 时点亮板载 LED，输入 `0` 时熄灭。
+
+```py
+import machine
+import select
+import sys
+
+led = machine.Pin('LED', machine.Pin.OUT)
+# 获取复用的轮询对象
+poll_object = select.poll()
+# 将系统标准输入注册为轮询对象
+poll_object.register(sys.stdin, 1)
+
+while True:
+    # 检查 USB 串口输入
+    if poll_object.poll(0):
+        # 从 USB 串口中读取
+        ch = sys.stdin.read(1)
+        if ch == '1'
+            led.value(1)
+            # 向 USB 串口中写入
+            print("LED ON")
+        else
+            led.value(0)
+            print("LED OFF")
 ```
 
 ## 参考
